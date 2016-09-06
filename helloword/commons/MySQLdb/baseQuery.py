@@ -5,11 +5,13 @@ author: chier
 content: 初次使用 MySQLdb 类库，简单SQL语句操作
 资料： http://www.yiibai.com/python/python_mysql.html
 官方网址: http://mysql-python.sourceforge.net/
+下载地址;http://www.codegood.com/downloads
+    http://www.codegood.com/download/11/
 """
 import MySQLdb
 
 def main():
-    conn = MySQLdb.connect (host = "127.0.0.1",port=3356, user = "root", passwd = "secret", db = "anal_db_2016")
+    conn = MySQLdb.connect (host = "127.0.0.1",port=3306, user = "root", passwd = "secret", db = "anal_db")
     cursor = conn.cursor ()
     cursor.execute ("SELECT VERSION()")
     row = cursor.fetchone ()

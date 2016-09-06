@@ -1,0 +1,11 @@
+1.安装 mysqldb内，需要装python 与mysql的驱动器，但是在w7 x64机器上报错如下
+---------------------------
+Cannot install
+---------------------------
+Python version 2.6 required, which was not found in the registry.
+---------------------------
+确定   
+---------------------------
+
+解决方案：	http://www.cnblogs.com/xuyuanwei/archive/2011/10/27/2226844.html
+附件：registerpython
