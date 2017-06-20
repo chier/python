@@ -1,0 +1,24 @@
+常用的html解析库
+    BeautifulSoup  bs4
+    lxml http://lxml.de
+    HTML parset https://docs.python.org/3/library/html.parser.html
+    html5lib
+
+
+动态代理：
+    Tor https://www.torproject.org/download/download
+
+采集
+    scrapy  https://scrapy.org/
+其它工具
+    Homebrew工具
+mysql工具
+    PyMySQL https://github.com/PyMySQL/PyMySQL
+    DBAPI  http://legacy.python.org/dev/peps/pep-0249
+
+python 发送邮件的包：
+    smtplib
+    email
+
+pdf文档解析库
+    pdfminer  https://pypi.python.org/pypi/pdfminer3k
