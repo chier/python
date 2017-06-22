@@ -4,8 +4,8 @@
    python_version  2.7.11
    autho zzl
 """
-from urllib.request import urlopen
-from urllib.request import HTTPError
+from urllib2 import urlopen
+from urllib2 import HTTPError
 from bs4 import BeautifulSoup
 import datetime
 import json

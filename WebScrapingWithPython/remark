@@ -22,3 +22,43 @@ python 发送邮件的包：
 
 pdf文档解析库
     pdfminer  https://pypi.python.org/pypi/pdfminer3k
+
+自然语言工具包： 
+    NLTK http://www.nltk.org/install.html
+语料标记系统： 
+    Preebank http://www.cis.up0enn.edu/~treebank
+自然语言资源：
+    Natural Language Processing with python    http://shop.oreilly.com/product/9780596516499.do
+    Natural Language Annotation for Machine Learning   http://shop.oreilly.com/product/0636920020578.do
+
+HTTP请求处理：
+    Requests库  http://www.python-requests.org/    https://github.com/kennethreitz/requests/tarball/master
+
+
+常用的JavaScript库
+    Jquery
+    Google Analytics 网络分析系统
+    Google 地图
+
+HTML变更内容解决方案：
+    直接从JavaScript代码里采集内容
+    或者使用PYTHON第三方库运行JAVASCRIPT,直接采集你在浏览器看到的页面。
+网络数据采集工具
+    Selenium http://www.seleniumhq.org
+    PhantomJs http://phantomjs.org/download.html
+
+
+图像处理库：
+    Pillow  http://pillow.readthedocs.org/installation.html
+    Tesseract   http://pypi.python.org/pypi/pytesseract
+
+OCR 光学文字识别 （Optical Character Recognition,OCR)
+
+NumPy
+
+Php 内容管理系统Drupal  验证码模模块：  https://www.drupal.org/project/captcha
+在线工具： Tesseract OCR Chopper (http://pp19dd.com/tesseract-ocr-chopper/)
+Tesseract 文档： https://github.com/tesseract-ocr/tesseract/wiki
+
+
+EditThis cookie http://www.editthiscookie.com
