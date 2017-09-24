@@ -9,23 +9,13 @@
 from urllib2 import urlopen
 # from urllib2 import open
 from bs4 import BeautifulSoup
-import requests
 # import urllib
 import re
 
-downLoadFile = 'H:\\happy\\1\\' ##要下载到的目录
-
 def getFile(url):
-    if(requests.get(url).status_code == 404):
-        print('这是个错误网址')
-        return []
-    print ('正在打开 ',url)
     file_name = url.split('/')[-1]
-    file_s = downLoadFile  + file_name
     u = urlopen(url)
-    # u = requests.urlopen(url)
-
-    f = open(file_s, 'wb')
+    f = open(file_name, 'wb')
 
     block_sz = 8192
     while True:
