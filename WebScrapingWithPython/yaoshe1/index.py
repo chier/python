@@ -9,8 +9,37 @@
 from urllib2 import urlopen
 # from urllib2 import open
 from bs4 import BeautifulSoup
-import urllib2
+# import urllib
 import re
+
+def getFile(url):
+    file_name = url.split('/')[-1]
+    u = urlopen(url)
+    f = open(file_name, 'wb')
+
+    block_sz = 8192
+    while True:
+        buffer = u.read(block_sz)
+        if not buffer:
+            break
+
+        f.write(buffer)
+    f.close()
+    print "Sucessful to download" + " " + file_name
+
+def getHtml(url):
+    page = urllib2.urlopen(url)
+    html = page.read()
+    page.close()
+    return html
+
+# compile the regular expressions and find
+# all stuff we need
+def getUrl(html):
+    reg = r'(?:href|HREF)="?((?:http://)?.+?\.pdf)'
+    url_re = re.compile(reg)
+    url_lst = re.findall(url_re,html)
+    return(url_lst)
 
 def opeVideoUrl(url):
     html = urlopen(url).read()
@@ -18,9 +47,8 @@ def opeVideoUrl(url):
     urls = re.findall(r"(http://www.yaoshe1.com/get_file/.*?mp4).*?",ss,re.I)
     for i in urls:
         print i
-        # urllib2.urlretrieve(i, "%s.mp4" % (i, ))
+        getFile(i);
     # else:
-        
         # print 'this is over'
     # bsObj = BeautifulSoup(html, "html5lib")
     # print bsObj
@@ -38,6 +66,7 @@ for obj in itemsDivObj:
     count = 0
     while count < 1:
         count = count+1
+        print("url = " + strHref)
         opeVideoUrl(strHref)
 
 
