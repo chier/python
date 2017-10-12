@@ -12,16 +12,20 @@ from bs4 import BeautifulSoup
 import requests
 # import urllib
 import re
+import os
 
-downLoadFile = 'H:\\happy\\1\\' ##要下载到的目录
+downLoadFile = 'H:\\happy\\4\\' ##要下载到的目录
 
 def getFile(url):
     if(requests.get(url).status_code == 404):
         print('这是个错误网址')
         return []
-    print ('正在打开 ',url)
+    #print ('正在打开 ',url)
     file_name = url.split('/')[-1]
     file_s = downLoadFile  + file_name
+    if os.path.exists(file_s):
+        print("file exists = " + file_name)
+        return
     u = urlopen(url)
     # u = requests.urlopen(url)
 
@@ -35,7 +39,7 @@ def getFile(url):
 
         f.write(buffer)
     f.close()
-    print "Sucessful to download" + " " + file_name
+    print("Sucessful to download = " + file_name)
 
 def getHtml(url):
     page = urlopen(url)
@@ -54,30 +58,35 @@ def getUrl(html):
 def opeVideoUrl(url):
     html = urlopen(url).read()
     ss = html.replace(" ","")
-    urls = re.findall(r"(http://www.yaoshe1.com/get_file/.*?mp4).*?",ss,re.I)
+    urls = re.findall(r"(http://www.yaoshe2.com/get_file/.*?mp4).*?",ss,re.I)
     for i in urls:
-        print i
-        getFile(i);
+        print(i)
+        try:
+        	getFile(i);
+        except Exception,e:
+            print e.message
     # else:
         # print 'this is over'
     # bsObj = BeautifulSoup(html, "html5lib")
     # print bsObj
 
 
-html = urlopen("http://www.yaoshe1.com/")
+html = urlopen("http://www.yaoshe2.com/")
 # print(html.read())
 bsObj = BeautifulSoup(html, "html5lib")
 itemsDivObj = bsObj.findAll("div",{"class":re.compile("^(item)((?!:).)*$")})
+print "itemsDivObj div  item  = ",len(itemsDivObj)
 for obj in itemsDivObj:
-    videosObjs = obj.findAll("a",{"href":re.compile("^(http://www.yaoshe1.com/videos/)((?!:).)*$")})
-    # print("==================")
-    strHref = videosObjs[0].attrs["href"]
-    # print strHref
-    count = 0
-    while count < 1:
-        count = count+1
-        print("url = " + strHref)
-        opeVideoUrl(strHref)
+    videosObjs = obj.findAll("a",{"href":re.compile("^(http://www.yaoshe2.com/videos/)((?!:).)*$")})
+    print "videosObjs a  videos  = ",len(videosObjs)
+    if len(videosObjs) != 0:
+        strHref = videosObjs[0].attrs["href"]
+        # print strHref
+        count = 0
+        while count < 1:
+            count = count+1
+            print("url = " + strHref)
+            opeVideoUrl(strHref)
 
 
 
