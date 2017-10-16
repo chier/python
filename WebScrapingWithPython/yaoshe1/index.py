@@ -16,6 +16,8 @@ import os
 
 downLoadFile = 'H:\\happy\\5\\' ##要下载到的目录
 
+
+
 def getFile(url):
     if(requests.get(url).status_code == 404):
         print('这是个错误网址')
@@ -71,10 +73,11 @@ def opeVideoUrl(url):
     # print bsObj
 
 def eachLatestUpdates():
+    currPage = 2
     print "eachLatestUpdates"
     while currPage < 10:
-        startOpenPage("http://www.yaoshe2.com/latest-updates/" + currPage + "/")
-        currPage = currPage +1
+        startOpenPage("http://www.yaoshe2.com/latest-updates/" + str(currPage) + "/")
+        currPage = currPage + 1
 
 
 
@@ -98,7 +101,6 @@ def startOpenPage(url):
                 opeVideoUrl(strHref)
 
 
-currPage = 2
 startOpenPage("http://www.yaoshe2.com/")
 eachLatestUpdates()
 
