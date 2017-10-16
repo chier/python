@@ -14,7 +14,7 @@ import requests
 import re
 import os
 
-downLoadFile = 'H:\\happy\\4\\' ##要下载到的目录
+downLoadFile = 'H:\\happy\\5\\' ##要下载到的目录
 
 def getFile(url):
     if(requests.get(url).status_code == 404):
@@ -70,23 +70,38 @@ def opeVideoUrl(url):
     # bsObj = BeautifulSoup(html, "html5lib")
     # print bsObj
 
+def eachLatestUpdates():
+    print "eachLatestUpdates"
+    while currPage < 10:
+        startOpenPage("http://www.yaoshe2.com/latest-updates/" + currPage + "/")
+        currPage = currPage +1
 
-html = urlopen("http://www.yaoshe2.com/")
-# print(html.read())
-bsObj = BeautifulSoup(html, "html5lib")
-itemsDivObj = bsObj.findAll("div",{"class":re.compile("^(item)((?!:).)*$")})
-print "itemsDivObj div  item  = ",len(itemsDivObj)
-for obj in itemsDivObj:
-    videosObjs = obj.findAll("a",{"href":re.compile("^(http://www.yaoshe2.com/videos/)((?!:).)*$")})
-    print "videosObjs a  videos  = ",len(videosObjs)
-    if len(videosObjs) != 0:
-        strHref = videosObjs[0].attrs["href"]
-        # print strHref
-        count = 0
-        while count < 1:
-            count = count+1
-            print("url = " + strHref)
-            opeVideoUrl(strHref)
+
+
+
+def startOpenPage(url):
+    html = urlopen(url)
+    # print(html.read())
+    bsObj = BeautifulSoup(html, "html5lib")
+    itemsDivObj = bsObj.findAll("div",{"class":re.compile("^(item)((?!:).)*$")})
+    print "itemsDivObj div  item  = ",len(itemsDivObj)
+    for obj in itemsDivObj:
+        videosObjs = obj.findAll("a",{"href":re.compile("^(http://www.yaoshe2.com/videos/)((?!:).)*$")})
+        print "videosObjs a  videos  = ",len(videosObjs)
+        if len(videosObjs) != 0:
+            strHref = videosObjs[0].attrs["href"]
+            # print strHref
+            count = 0
+            while count < 1:
+                count = count+1
+                print("url = " + strHref)
+                opeVideoUrl(strHref)
+
+
+currPage = 2
+startOpenPage("http://www.yaoshe2.com/")
+eachLatestUpdates()
+
 
 
 
