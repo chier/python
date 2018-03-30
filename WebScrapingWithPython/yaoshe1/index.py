@@ -5,6 +5,9 @@
 # @Author  : zzl
 """
    python_version  2.7.11
+
+   import package:   bs4,requests,html5lib
+
 """
 from urllib2 import urlopen
 # from urllib2 import open
@@ -14,8 +17,8 @@ import requests
 import re
 import os
 
-downLoadFile = 'H:\\happy\\5\\' ##要下载到的目录
-
+downLoadFile = 'D:\\happy\\yaoshe6' ##要下载到的目录
+isdebug = True
 
 
 def getFile(url):
@@ -63,10 +66,10 @@ def opeVideoUrl(url):
     urls = re.findall(r"(http://www.yaoshe2.com/get_file/.*?mp4).*?",ss,re.I)
     for i in urls:
         print(i)
-        try:
-        	getFile(i);
-        except Exception,e:
-            print e.message
+        # try:
+        getFile(i);
+        # except Exception,e:
+        #     print e.message
     # else:
         # print 'this is over'
     # bsObj = BeautifulSoup(html, "html5lib")
@@ -75,21 +78,23 @@ def opeVideoUrl(url):
 def eachLatestUpdates():
     currPage = 2
     print "eachLatestUpdates"
-    while currPage < 10:
-        startOpenPage("http://www.yaoshe2.com/latest-updates/" + str(currPage) + "/")
+    while currPage < 100:
+        startOpenPage("http://www.yaoshe6.com/latest-updates/" + str(currPage) + "/")
         currPage = currPage + 1
 
 
 
 
 def startOpenPage(url):
+    print "base url  ==============  " + url
     html = urlopen(url)
-    # print(html.read())
+    if isdebug == True:
+        print(html.read())
     bsObj = BeautifulSoup(html, "html5lib")
     itemsDivObj = bsObj.findAll("div",{"class":re.compile("^(item)((?!:).)*$")})
     print "itemsDivObj div  item  = ",len(itemsDivObj)
     for obj in itemsDivObj:
-        videosObjs = obj.findAll("a",{"href":re.compile("^(http://www.yaoshe2.com/videos/)((?!:).)*$")})
+        videosObjs = obj.findAll("a",{"href":re.compile("^(http://www.yaoshe6.com/videos/)((?!:).)*$")})
         print "videosObjs a  videos  = ",len(videosObjs)
         if len(videosObjs) != 0:
             strHref = videosObjs[0].attrs["href"]
@@ -101,7 +106,7 @@ def startOpenPage(url):
                 opeVideoUrl(strHref)
 
 
-startOpenPage("http://www.yaoshe2.com/")
+startOpenPage("http://www.yaoshe6.com/")
 eachLatestUpdates()
 
 
